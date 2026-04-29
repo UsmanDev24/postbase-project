@@ -50,6 +50,7 @@ router.get("/explore/:catgName", async (req, res, next) => {
   res.render("index", {
     title: "Exploring " + req.params.catgName,
     postlist: postlist,
+    explorePage: true,
     catgName: req.params.catgName,
     total: keylist.length,
     limit: limit,
