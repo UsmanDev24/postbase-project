@@ -16,23 +16,34 @@ incus launch images:debian/13 $CONTAINER_NAME -c limits.cpu=1 -c limits.memory=1
 incus exec $CONTAINER_NAME -- bash << 'EOF'
   apt-get update && \
   apt-get install -y git unzip curl && \
+  
+  if command -v nodejs &> /dev/null ; then 
+    echo "Nodejs already installed"
+  else 
+    echo "installing nodejs..."
+    curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && \
+    apt-get install -y nodejs 
+  fi
+  nodejs -v
+  npm -v 
 
-  curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && \
-  apt-get install -y nodejs && \
-
-  if command -v ./.bun/bin/bun &> /dev/null ; than
+  if command -v ./.bun/bin/bun &> /dev/null ; then
     echo "Bun already installed"
   else 
-    echo "Installing bun"
+    echo "Installing bun..."
     curl -fsSL https://bun.sh/install | bash - 
   fi
   source /root/.bashrc
   bun --version
-  nodejs -v
-  npm -v 
 
-  npm install pm2@latest -g 
+  if command -v pm2 &> /dev/null ; then
+    echo "pm2 already installed"
+  else 
+    echo "Installing pm2..."
+    npm install pm2@latest -g 
+  fi
   pm2 -v
+
 EOF
 
 
