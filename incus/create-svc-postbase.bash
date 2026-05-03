@@ -56,30 +56,33 @@ incus config set $CONTAINER_NAME environment.DOTENV_PRIVATE_KEY_PRODUCTION="$MY_
 unset MY_KEY_PRODUCTION
 
 incus exec $CONTAINER_NAME -- bash << 'EOF'
-  cd /root/home
-  rm -r ./postbase
+  cd /root
+  rm -r /root/postbase
 
   git clone https://github.com/UsmanDev24/postbase.git && \
-  cd ./postbase && \
+  cd /root/postbase && \
 
   source /root/.bashrc
   bun install && \
   bun run build && \
   bun run init-catg-pro && \
-
+  pm2 stop all
+  pm2 delete all 
+  pm2 flush all 
+  rm -r /root/.pm2/logs
   pm2 start --name postbase bun -- start
 EOF
 
 incus exec $CONTAINER_NAME -- bash << 'EOF'
-  cd /root/home
-  rm -r ./postbase-user-api
+  cd /root
+  rm -r /root/postbase-user-api
   git clone https://github.com/UsmanDev24/postbase-user-api.git && \
   
   source /root/.bashrc
-  cd ./postbase-user-api && \
+  cd /root/postbase-user-api && \
   bun install && \
   bun run build && \
-  pm2 start --name postbase-user-api bun -- start && \
+  pm2 start --name user-api bun -- start && \
   eval $(pm2 startup | grep ^sudo) && \
   pm2 save
 EOF
