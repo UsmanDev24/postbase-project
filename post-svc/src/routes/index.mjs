@@ -143,7 +143,7 @@ router.get("/", async (req, res, next) => {
     }
 
     res.render("index", {
-      title: "PostBase",
+      title: "userPost",
       postlist: postlist,
       homepage: true,
       user: req.user ? req.user : undefined,
@@ -170,9 +170,9 @@ router.get("/terms-of-services", (req, res, next) => {
   });
 });
 
-router.get("/about-postbase", (req, res, next) => {
-  res.render("about-postbase", {
-    title: "About Postbase",
+router.get("/about-userPost", (req, res, next) => {
+  res.render("about-userPost", {
+    title: "About userPost",
     user: req.user ? req.user : undefined,
   });
 });
