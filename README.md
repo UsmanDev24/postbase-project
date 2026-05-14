@@ -1,6 +1,6 @@
-# PostBase-Project
+# userPost
 
-**PostBase** is a full-stack content platform where users can create  posts, manage their accounts, and interact with structured content.  
+**userPost** is a full-stack content platform where users can create  posts, manage their accounts, and interact with structured content.  
 
 > Built as a serious engineering project, not a demo CRUD app.
 
@@ -18,7 +18,7 @@
 
 ## 🧱 Architecture Overview
 
-PostBase follows a **service-oriented architecture** with clear responsibility boundaries.
+userPost follows a **service-oriented architecture** with clear responsibility boundaries.
 
 ## Goal
  The main purpose project is to master Backend Development and DevOps workflows.

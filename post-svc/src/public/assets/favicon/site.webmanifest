@@ -1,6 +1,6 @@
 {
-  "name": "PostBase",
-  "short_name": "PostBase",
+  "name": "userPost",
+  "short_name": "userPost",
   "icons": [
     {
       "src": "/assets/favicon/web-app-manifest-192x192.png",
