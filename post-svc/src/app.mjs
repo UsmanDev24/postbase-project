@@ -68,8 +68,8 @@ mainRouter.use(async (req, res, next) => {
 
 })
 mainRouter.use((req, res, next) => {
-    if (process.env.RAILWAY_ENVIRONMENT_NAME) {
-        if (req.headers['x-worker'] !== process.env.X_WORKER) {
+    if (process.env.X_WORKER && req.headers.host != "localhost") {
+        if (!req.headers['x-worker'] || req.headers['x-worker'] !== process.env.X_WORKER) {
             res.status(403)
             res.end("Forbidden");
             return
